@@ -15,7 +15,7 @@ import java.util.Map;
 public class OpenAiService {
 
     private static final String CHAT_URL = "https://api.openai.com/v1/chat/completions";
-    private static final String AUTHORIZATION = "Bearer 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";
+    private static final String AUTHORIZATION = "Bearer <api-key>";
 
     public HttpResponse<String> chat(String question) {
         Map<String, String> headers = new HashMap<>() {{
