@@ -9,6 +9,7 @@ public enum ErrorCode implements CodeStatus {
     SIGN_ERROR("signature error"),
     EXPRESS_ERROR("express error"),
     REQUEST_ERROR("请求异常"),
+    CHAT_ERROR("聊天系统异常，请稍后再试！"),
     ;
 
     private final String code;

@@ -1,0 +1,7 @@
+server:
+  port: 18080
+
+chatgpt:
+  url: "https://api.openai.com/v1/chat/completions"
+  token: ""
+  model: "gpt-3.5-turbo"

@@ -19,16 +19,9 @@ public class HttpUtil {
             .connectTimeout(Duration.ofSeconds(10))
             .build();
 
-    /**
-     * 发起post请求
-     *
-     * @param uri     路径
-     * @param args    body参数
-     * @param headers 头部参数
-     * @return 返回响应
-     */
-    public static HttpResponse<String> post(String uri, Map<String, Object> args, Map<String, String> headers) {
-        HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(GsonUtil.toJson(args));
+    public static HttpResponse<String> post(String uri, String json, Map<String, String> headers) {
+        log.info("post uri={}, req={}", uri, json);
+        HttpRequest.BodyPublisher body = HttpRequest.BodyPublishers.ofString(json);
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(uri))
                 .timeout(Duration.ofSeconds(10))
