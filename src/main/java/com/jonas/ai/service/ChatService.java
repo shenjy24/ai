@@ -26,7 +26,7 @@ public class ChatService {
 
     @Value("${chatgpt.url}")
     private String chatUrl;
-    @Value("${chatgpt.token}")
+    @Value("${chatgpt.key}")
     private String chatToken;
     @Value("${chatgpt.model}")
     private String chatModel;

@@ -23,7 +23,8 @@ public class ResponseAdvice implements ResponseBodyAdvice<Object> {
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-        return true;
+        // 使用DirectReturn注解的直接返回，不进行返回体封装
+        return !returnType.hasMethodAnnotation(DirectReturn.class);
     }
 
     @Override
