@@ -19,7 +19,7 @@ import java.net.http.HttpResponse;
 @Slf4j
 @SpringBootTest
 @RunWith(SpringRunner.class)
-class ApplicationTests {
+class ApplicationTest {
 
     @Autowired
     private ChatService chatService;
