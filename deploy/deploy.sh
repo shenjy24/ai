@@ -1,4 +1,4 @@
-#!/bash/sh
+#!/usr/bin/bash
 
 # shellcheck disable=SC2164
 cd /root/workspace/ai/ai
