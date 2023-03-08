@@ -1,5 +1,4 @@
 
-#### 运行指令
-```
-docker run -d -p 18080:18080 -e TZ=Asia/Shanghai --name ai -v /root/workspace/logs:/logs -v /root/workspace/application.yml:/application.yml ai
-```
+#### 部署
+首次构建执行 deploy.sh
+重启执行 restart.sh
