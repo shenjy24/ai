@@ -43,7 +43,7 @@ public class WechatController {
         log.info("\n接收微信请求：[openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
                 openid, signature, encrypt_type, msg_signature, timestamp, nonce, requestBody);
-        if (wechatService.checkPublicAccountSignature(timestamp, nonce, signature)) {
+        if (!wechatService.checkPublicAccountSignature(timestamp, nonce, signature)) {
             log.error("验签失败");
             throw new BizException(SystemCode.BIZ_ERROR);
         }
