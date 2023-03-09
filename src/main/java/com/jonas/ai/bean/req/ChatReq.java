@@ -20,6 +20,8 @@ public class ChatReq {
 
     private String user;
 
+    private int max_tokens;
+
     public void addMessage(String role, String message) {
         messages.add(new ChatMessage(role, message));
     }

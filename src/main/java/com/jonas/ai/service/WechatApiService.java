@@ -40,7 +40,6 @@ public class WechatApiService {
         MsgReq msgReq = new MsgReq(openId, "text", new MsgReq.Text(content));
         String msgUrl = publicAccountConfig.getSendUrl() + getAccessToken();
         HttpResponse<String> response = HttpUtil.post(msgUrl, GsonUtil.toJson(msgReq), new HashMap<>());
-
     }
 
     public String getAccessToken() {

@@ -2,6 +2,7 @@ package com.jonas.ai.service;
 
 import com.google.gson.JsonObject;
 import com.jonas.ai.bean.constant.ChatRole;
+import com.jonas.ai.bean.constant.Constants;
 import com.jonas.ai.bean.req.ChatReq;
 import com.jonas.ai.config.model.BizException;
 import com.jonas.ai.config.model.ErrorCode;
@@ -62,9 +63,15 @@ public class ChatService {
         ChatReq chatReq = new ChatReq();
         chatReq.setModel(chatModel);
         chatReq.setUser(openId);
+        chatReq.setMax_tokens(Constants.MAX_TOKEN);
         List<ChatReq.ChatMessage> messages = CacheUtil.get(openId);
         if (CollectionUtils.isEmpty(messages)) {
             messages.add(new ChatReq.ChatMessage(ChatRole.SYSTEM, "你是一个AI机器人助手"));
+        }
+        // 上下文超过指定数量则进行替换
+        if (messages.size() - 1 > Constants.MAX_MSG) {
+            messages.remove(1);
+            messages.remove(2);
         }
         messages.add(new ChatReq.ChatMessage(ChatRole.USER, question));
         chatReq.setMessages(messages);

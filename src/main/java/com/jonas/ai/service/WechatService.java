@@ -24,6 +24,7 @@ public class WechatService {
 
     private final ChatService chatService;
 
+
     /**
      * 校验公众号回调接口的签名
      */
