@@ -10,3 +10,7 @@ wechat:
   public:
     account:
       token: "1234poiu"
+      appId: ""
+      secret: ""
+      access_token_url: "https://api.weixin.qq.com/cgi-bin/token"
+      send_url: "https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token="

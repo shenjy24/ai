@@ -1,15 +1,14 @@
 package com.jonas.ai.service;
 
 import com.jonas.ai.bean.req.PublicAccountReq;
+import com.jonas.ai.config.PublicAccountConfig;
 import com.jonas.ai.config.model.BizException;
 import com.jonas.ai.config.model.ErrorCode;
-import com.jonas.ai.util.GsonUtil;
 import com.jonas.ai.util.StringUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.security.MessageDigest;
@@ -21,8 +20,7 @@ import java.util.Arrays;
 @RequiredArgsConstructor
 public class WechatService {
 
-    @Value("${wechat.public.account.token}")
-    private String publicAccountToken;
+    private final PublicAccountConfig publicAccountConfig;
 
     private final ChatService chatService;
 
@@ -35,7 +33,7 @@ public class WechatService {
 
     public boolean checkPublicAccountSignature(String timestamp, String nonce, String signature) {
         // 1.将token、timestamp、nonce三个参数进行字典序排序
-        String[] arr = new String[]{publicAccountToken, timestamp, nonce};
+        String[] arr = new String[]{publicAccountConfig.getToken(), timestamp, nonce};
         Arrays.sort(arr);
 
         // 2. 将三个参数字符串拼接成一个字符串进行sha1加密
