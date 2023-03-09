@@ -35,19 +35,18 @@ public class WechatController {
     @DirectReturn
     @PostMapping(produces = "application/xml;charset=utf-8")
     public String receiveFromWechat(@RequestBody String requestBody,
-                          @RequestParam("signature") String signature,
-                          @RequestParam("timestamp") String timestamp,
-                          @RequestParam("nonce") String nonce,
-                          @RequestParam("openid") String openid,
-                          @RequestParam(name = "encrypt_type", required = false) String encType,
-                          @RequestParam(name = "msg_signature", required = false) String msgSignature) {
+                          String signature,
+                          String timestamp,
+                          String nonce,
+                          String openid,
+                          String encrypt_type, String msg_signature) {
         log.info("\n接收微信请求：[openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
-                openid, signature, encType, msgSignature, timestamp, nonce, requestBody);
+                openid, signature, encrypt_type, msg_signature, timestamp, nonce, requestBody);
         if (wechatService.checkPublicAccountSignature(timestamp, nonce, signature)) {
             log.error("验签失败");
             throw new BizException(SystemCode.BIZ_ERROR);
         }
-        return wechatService.receiveFromWechat(openid, requestBody, encType, msgSignature);
+        return wechatService.receiveFromWechat(openid, requestBody, encrypt_type, msg_signature);
     }
 }
