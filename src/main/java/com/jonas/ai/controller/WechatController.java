@@ -9,6 +9,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 微信公众号回调接口
+ *
+ * @param req
+ * @return
+ */
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -18,10 +24,10 @@ public class WechatController {
     private final WechatService wechatService;
 
     /**
-     * 微信公众号回调接口
+     * 用于token验证
      *
-     * @param req
-     * @return
+     * @param req 请求体
+     * @return 验证成功直接返回echostr
      */
     @DirectReturn
     @GetMapping(produces = "text/plain;charset=utf-8")
@@ -35,11 +41,11 @@ public class WechatController {
     @DirectReturn
     @PostMapping(produces = "application/xml;charset=utf-8")
     public String receiveFromWechat(@RequestBody String requestBody,
-                          String signature,
-                          String timestamp,
-                          String nonce,
-                          String openid,
-                          String encrypt_type, String msg_signature) {
+                                    String signature,
+                                    String timestamp,
+                                    String nonce,
+                                    String openid,
+                                    String encrypt_type, String msg_signature) {
         log.info("\n接收微信请求：[openid=[{}], [signature=[{}], encType=[{}], msgSignature=[{}],"
                         + " timestamp=[{}], nonce=[{}], requestBody=[\n{}\n] ",
                 openid, signature, encrypt_type, msg_signature, timestamp, nonce, requestBody);

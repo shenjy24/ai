@@ -24,6 +24,8 @@ public class WechatService {
     @Value("${wechat.public.account.token}")
     private String publicAccountToken;
 
+    private final ChatService chatService;
+
     /**
      * 校验公众号回调接口的签名
      */
@@ -70,8 +72,7 @@ public class WechatService {
     private WxMpXmlOutMessage route(WxMpXmlMessage wxMessage) {
         try {
 
-            //TODO 组装回复消息
-            String content = "收到信息内容：" + GsonUtil.toJson(wxMessage);
+            String content = chatService.chat(wxMessage.getFromUser(), wxMessage.getContent());
 
             return build(content, wxMessage);
         } catch (Exception e) {

@@ -26,7 +26,7 @@ class ApplicationTest {
 
     @Test
     void testChat1() {
-        String answer = chatService.chat("unionId", "openId","pip常用指令");
+        String answer = chatService.chat("openId","pip常用指令");
         System.out.println(answer);
     }
 

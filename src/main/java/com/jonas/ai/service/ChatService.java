@@ -31,7 +31,7 @@ public class ChatService {
     @Value("${chatgpt.model}")
     private String chatModel;
 
-    public String chat(String unionId, String openId, String question) {
+    public String chat(String openId, String question) {
         try {
             Map<String, String> headers = new HashMap<>() {{
                 put("Content-Type", "application/json");

@@ -14,7 +14,7 @@ public class ChatController {
     private final ChatService chatService;
 
     @RequestMapping("/chat")
-    public String chat(String unionId, String openId, String question) {
-        return chatService.chat(unionId, openId, question);
+    public String chat(String openId, String question) {
+        return chatService.chat(openId, question);
     }
 }
